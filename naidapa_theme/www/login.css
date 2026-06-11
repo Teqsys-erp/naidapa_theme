@@ -336,7 +336,7 @@ body[data-path="login"] .page-content-wrapper {
 .st-login-form-col .btn-login:hover,
 .st-login-form-col .btn-forgot:hover,
 .st-login-form-col .btn-login-with-email-link:hover {
-        background: #12715B !important;
+        background: #0047DB !important;
         box-shadow: 0 4px 12px rgba(0, 82, 255, 0.25) !important;
         transform: translateY(-1px);
 }

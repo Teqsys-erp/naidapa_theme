@@ -13193,7 +13193,7 @@ div .semi-nav~footer {
 }
 
 .btn-primary {
-  background-color: rgba(var(--ki-primary), 1);
+  background-color:#0047DB !important;
   border: 1px solid rgba(var(--ki-primary), 1);
 }
 
@@ -13205,7 +13205,7 @@ div .semi-nav~footer {
 .btn-primary:focus,
 .btn-primary:focus-visible,
 .btn-primary.disabled {
-  background-color: rgba(var(--ki-primary), 1) !important;
+  background-color: #0047DB !important;
   border-color: rgba(var(--ki-primary), 1) !important;
   transition: var(--app-transition);
 }
