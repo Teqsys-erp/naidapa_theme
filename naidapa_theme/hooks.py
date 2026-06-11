@@ -20,30 +20,32 @@ app_license = "mit"
 # 		"has_permission": "naidapa_theme.api.permission.has_app_permission"
 # 	}
 # ]
-
+ASSET_VERSION = "3.0"
 # Includes in <head>
 # ------------------
 
 # include js, css files in header of desk.html
 app_include_css = [
-    "/assets/naidapa_theme/vendor/simplebar/simplebar.css",
-    "/assets/naidapa_theme/css/ki_style.css",
-    "/assets/naidapa_theme/css/ki_responsive.css",
-    "/assets/naidapa_theme/css/naidapa_theme.css"
+    f"/assets/naidapa_theme/vendor/simplebar/simplebar.css?v={ASSET_VERSION}",
+    f"/assets/naidapa_theme/css/ki_style.css?v={ASSET_VERSION}",
+    f"/assets/naidapa_theme/css/ki_responsive.css?v={ASSET_VERSION}",
+    f"/assets/naidapa_theme/css/naidapa_theme.css?v={ASSET_VERSION}",
 ]
+ 
 app_include_js = [
-    "/assets/naidapa_theme/vendor/simplebar/simplebar.js",
-    "/assets/naidapa_theme/vendor/animated_icon/iconify-icon.min.js",
-    "/assets/naidapa_theme/js/naidapa_theme.js"
+    f"/assets/naidapa_theme/vendor/simplebar/simplebar.js?v={ASSET_VERSION}",
+    f"/assets/naidapa_theme/vendor/animated_icon/iconify-icon.min.js?v={ASSET_VERSION}",
+    f"/assets/naidapa_theme/js/naidapa_theme.js?v={ASSET_VERSION}",
 ]
 
 # include js, css files in header of web template (portal/customer pages)
 web_include_css = [
-    "/assets/naidapa_theme/css/naidapa_portal.css"
+    f"/assets/naidapa_theme/css/naidapa_portal.css?v={ASSET_VERSION}",
 ]
+ 
 web_include_js = [
-    "/assets/naidapa_theme/vendor/animated_icon/iconify-icon.min.js",
-    "/assets/naidapa_theme/js/naidapa_portal.js"
+    f"/assets/naidapa_theme/vendor/animated_icon/iconify-icon.min.js?v={ASSET_VERSION}",
+    f"/assets/naidapa_theme/js/naidapa_portal.js?v={ASSET_VERSION}",
 ]
 
 # include custom scss in every website theme (without file extension ".scss")
