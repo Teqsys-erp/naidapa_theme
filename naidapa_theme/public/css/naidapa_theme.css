@@ -559,7 +559,10 @@ nav .app-nav .main-nav>li.active>a iconify-icon {
     display: none !important;
 }
 
+.pill-label {
+  z-index: 1;
 
+ }
 
 .shortcut-widget-box {
     cursor: pointer;
