@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 /* --- CUSTOM MENU ITEM STYLES --- */
 .page-container {
@@ -118,7 +118,7 @@
 
 /* Global Typography Override */
 body {
-    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
     background-color: var(--bg-color) !important;
     color: var(--text-primary) !important;
     -webkit-font-smoothing: antialiased;
@@ -211,9 +211,14 @@ select.input-with-feedback {
     cursor: pointer;
 }
 
-/* Always hide native Frappe sidebar — custom vertical-sidebar replaces it everywhere */
-body.naidapa-theme-active .layout-side-section,
-body.naidapa-theme-active .sidebar-toggle-btn {
+/* Hide native Frappe sidebar ONLY on Workspace pages, where the custom
+   vertical-sidebar replaces it. On forms, lists, print, report views etc. the
+   native side section holds real tools (attachments, tags, print settings) so
+   it must stay visible. */
+body.naidapa-theme-active[data-route^="Workspaces"] .layout-side-section,
+body.naidapa-theme-active[data-route^="Workspaces"] .sidebar-toggle-btn,
+body.naidapa-theme-active[data-route=""] .layout-side-section,
+body.naidapa-theme-active[data-route=""] .sidebar-toggle-btn {
     display: none !important;
 }
 

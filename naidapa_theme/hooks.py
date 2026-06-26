@@ -20,7 +20,7 @@ app_license = "mit"
 # 		"has_permission": "naidapa_theme.api.permission.has_app_permission"
 # 	}
 # ]
-ASSET_VERSION = "18.0"
+ASSET_VERSION = "22.0"
 
 # Includes in <head>
 # ------------------
