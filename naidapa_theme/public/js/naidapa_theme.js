@@ -117,6 +117,21 @@
         naidapa_theme.inject_navbar_toggle();
         naidapa_theme.mutate_number_cards();
         naidapa_theme.setup_icon_picker();
+        naidapa_theme.setup_nav_dropdowns();
+    };
+
+    naidapa_theme.setup_nav_dropdowns = function () {
+        if (naidapa_theme._nav_dropdowns_bound) return;
+        naidapa_theme._nav_dropdowns_bound = true;
+
+        $(document).on('click', '.nav-group-arrow', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+
+            const $group = $(this).closest('.nav-group');
+            $group.toggleClass('collapsed');
+        });
     };
 
     naidapa_theme.mutate_number_cards = function () {
@@ -249,8 +264,12 @@
         };
     });
 
+    let _patch_debounce_timer = null;
     const observer = new MutationObserver(() => {
-        naidapa_theme.run_patches();
+        clearTimeout(_patch_debounce_timer);
+        _patch_debounce_timer = setTimeout(() => {
+            naidapa_theme.run_patches();
+        }, 150);
     });
 
     $(document).ready(() => {

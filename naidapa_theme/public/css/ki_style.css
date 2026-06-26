@@ -13364,7 +13364,7 @@ div .semi-nav~footer {
 }
 
 .btn-danger {
-  background-color: rgba(var(--ki-danger), 1);
+  background-color:#e14e5a !important ;
   border: 1px solid rgba(var(--ki-danger), 1);
 }
 

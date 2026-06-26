@@ -1,7 +1,7 @@
 <nav class="vertical-sidebar">
     <div class="app-logo">
-        <a class="logo d-inline-block" href="/app/home"/>
-            <img alt="#" src="{{ frappe.db.get_single_value('Theme Settings', 'sidebar_logo') or frappe.utils.get_url() + '/assets/naidapa_theme/images/logo.png' }}" style="height: auto"
+        <a class="logo d-inline-block" href="/">
+            <img alt="#" src="{{ frappe.utils.get_url() }}/assets/naidapa_theme/images/logo.png" style="height: auto"
                 width="initial !important">
         </a>
     </div>
@@ -9,24 +9,54 @@
     <div class="app-nav" id="app-simple-bar" data-simplebar>
         <ul class="main-nav p-0 mt-2">
             <li class="menu-title">
-                <span></span>
+                <span>Workspace</span>
             </li>
 
             {% for page in pages %}
-            <li>
+            {% if page.child_workspace and page.child_workspace|length > 0 %}
+            <!-- Parent with dropdown (collapsed by default) -->
+            <li class="nav-group has-children collapsed">
+                <div class="nav-group-row">
+                    <a href="/app/{{ page.name | lower | replace(' ', '-') }}" class="nav-group-link">
+                        {% if page.custom_animated_icon %}
+                        <span class="sidebar-item-icon">
+                            <iconify-icon icon="line-md:{{ page.custom_animated_icon }}"></iconify-icon>
+                        </span>
+                        {% endif %}
+                        <span class="sidebar-item-label">{{ page.title }}</span>
+                    </a>
+                    <button type="button" class="nav-group-arrow" aria-label="Toggle submenu">
+                        <iconify-icon icon="line-md:chevron-down"></iconify-icon>
+                    </button>
+                </div>
+                <ul class="nav-submenu">
+                    {% for child in page.child_workspace %}
+                    <li>
+                        <a href="/app/{{ child.name | lower | replace(' ', '-') }}">
+                            {% if child.custom_animated_icon %}
+                            <span class="sidebar-item-icon">
+                                <iconify-icon icon="line-md:{{ child.custom_animated_icon }}"></iconify-icon>
+                            </span>
+                            {% endif %}
+                            <span class="sidebar-item-label">{{ child.title }}</span>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% else %}
+            <!-- Standalone page, no children -->
+            <li class="nav-no-children">
                 <a href="/app/{{ page.name | lower | replace(' ', '-') }}">
                     {% if page.custom_animated_icon %}
                     <span class="sidebar-item-icon">
                         <iconify-icon icon="line-md:{{ page.custom_animated_icon }}"></iconify-icon>
                     </span>
-                    {% else %}
-                    <span class="sidebar-item-icon">
-                        <iconify-icon icon="line-md:arrow-small-right"></iconify-icon>
-                    </span>
                     {% endif %}
-                    <span class="sidebar-item-label">{{ page.title }}<span>
+                    <span class="sidebar-item-label">{{ page.title }}</span>
                 </a>
             </li>
+            {% endif %}
             {% endfor %}
         </ul>
     </div>

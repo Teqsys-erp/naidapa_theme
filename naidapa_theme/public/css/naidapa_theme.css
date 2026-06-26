@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
 /* --- CUSTOM MENU ITEM STYLES --- */
 .page-container {
@@ -77,7 +77,7 @@
     --ki-white: 255, 255, 255;
 
     /* Frappe Native Primary Variables */
-    --primary: #0047DB;
+    --primary: #0f626a;
     --np-bg: #f5fbfb;
     --font-color: #082f32;
     --body-color: #f5fbfb;
@@ -118,7 +118,7 @@
 
 /* Global Typography Override */
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
     background-color: var(--bg-color) !important;
     color: var(--text-primary) !important;
     -webkit-font-smoothing: antialiased;
@@ -211,13 +211,9 @@ select.input-with-feedback {
     cursor: pointer;
 }
 
-/* Prevent layout jumping on Homepage only */
-body.naidapa-theme-active[data-route="Workspaces"] .layout-side-section,
-body.naidapa-theme-active[data-route="Workspaces"] .sidebar-toggle-btn,
-body.naidapa-theme-active[data-route^="Workspaces/"] .layout-side-section,
-body.naidapa-theme-active[data-route^="Workspaces/"] .sidebar-toggle-btn,
-body.naidapa-theme-active[data-route=""] .layout-side-section,
-body.naidapa-theme-active[data-route=""] .sidebar-toggle-btn {
+/* Always hide native Frappe sidebar — custom vertical-sidebar replaces it everywhere */
+body.naidapa-theme-active .layout-side-section,
+body.naidapa-theme-active .sidebar-toggle-btn {
     display: none !important;
 }
 
@@ -333,7 +329,7 @@ nav .app-nav .main-nav>li>a:hover {
 }
 
 nav .app-nav .main-nav>li.active>a {
-    background-color: #0047DB !important;
+    background-color: #0052FF !important;
     color: #ffffff !important;
 }
 
@@ -559,10 +555,7 @@ nav .app-nav .main-nav>li.active>a iconify-icon {
     display: none !important;
 }
 
-.pill-label {
-  z-index: 1;
 
- }
 
 .shortcut-widget-box {
     cursor: pointer;
@@ -1043,3 +1036,134 @@ span.sidebar-item-label {
     height: 32px !important;
     justify-content: center !important;
 }
+
+/* --- SIDEBAR DROPDOWN GROUPS (HR/Payroll style with children) --- */
+
+.app-nav .nav-group {
+    margin-bottom: 4px;
+}
+
+/* Align labels consistently whether or not an item has an icon.
+   Items WITHOUT an icon get left padding equal to icon(20px)+gap(5px). */
+nav .app-nav .main-nav > li.nav-no-children > a > .sidebar-item-label:first-child,
+.app-nav .nav-group-row .nav-group-link > .sidebar-item-label:first-child {
+    padding-left: 25px;
+}
+
+/* Hide native ::after arrows everywhere in our groups */
+nav .app-nav .main-nav > li.nav-no-children > a::after,
+nav .app-nav .main-nav > li.nav-group a::after {
+    display: none !important;
+}
+
+/* Row holding the link + the toggle button */
+.app-nav .nav-group-row {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: 4px;
+}
+
+/* The link fills the row — match regular .main-nav>li>a styling exactly */
+.app-nav .nav-group-row .nav-group-link {
+    flex: 1;
+    display: flex !important;
+    align-items: center;
+    min-width: 0;
+    border-radius: 5px;
+    color: var(--font-color);
+    font-size: 15px;
+    font-weight: 500;
+    padding: 10px 14px;
+    text-transform: capitalize;
+    transition: var(--app-transition);
+    white-space: nowrap;
+    text-decoration: none;
+    margin-bottom: 0;
+}
+
+.app-nav .nav-group-row .nav-group-link:hover {
+    background-color: rgba(var(--primary), .1);
+    color: rgba(var(--primary), 1);
+}
+
+.app-nav .nav-group-row .nav-group-link .sidebar-item-label {
+    flex: 1;
+}
+
+/* Clickable arrow button on the right */
+.app-nav .nav-group-arrow {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    border-radius: 6px;
+    font-size: 18px;
+    cursor: pointer;
+    color: inherit;
+    transition: transform 0.25s ease, background-color 0.15s ease;
+}
+
+/* Collapsed = arrow points right; open = points down */
+.app-nav .nav-group.collapsed .nav-group-arrow {
+    transform: rotate(-90deg);
+}
+
+.app-nav .nav-group:not(.collapsed) .nav-group-arrow {
+    transform: rotate(0deg);
+}
+
+.app-nav .nav-group-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Open parent header = blue active color (applied to the row) */
+nav .app-nav .main-nav > li.nav-group:not(.collapsed) > .nav-group-row {
+    background-color: #0052FF !important;
+    border-radius: 8px;
+}
+
+nav .app-nav .main-nav > li.nav-group:not(.collapsed) > .nav-group-row .nav-group-link,
+nav .app-nav .main-nav > li.nav-group:not(.collapsed) > .nav-group-row .nav-group-arrow {
+    color: #ffffff !important;
+}
+
+nav .app-nav .main-nav > li.nav-group:not(.collapsed) > .nav-group-row iconify-icon {
+    color: #ffffff !important;
+}
+
+nav .app-nav .main-nav > li.nav-group:not(.collapsed) > .nav-group-row .nav-group-arrow:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Submenu container */
+.app-nav .nav-submenu {
+    list-style: none;
+    margin: 4px 0 6px 0;
+    padding: 4px 0;
+    overflow: hidden;
+    max-height: 1000px;
+    transition: max-height 0.25s ease, opacity 0.2s ease;
+    opacity: 1;
+}
+
+/* Hide submenu when collapsed */
+.app-nav .nav-group.collapsed .nav-submenu {
+    max-height: 0;
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Indent submenu items */
+.app-nav .nav-submenu li > a {
+    padding-left: 32px !important;
+}
+
+/* --- END SIDEBAR DROPDOWN GROUPS --- */
